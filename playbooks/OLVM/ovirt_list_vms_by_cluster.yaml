@@ -39,11 +39,11 @@
         tags:
           - always
   
-    - name: List OLVM VM's {{ olvm_name }} by Cluster {{ olvm_cluster }}
-      ovirt_vm_info:
-        pattern: name="{{ olvm_name }}" and cluster="{{ olvm_cluster }}"
-      register: result
+      - name: List OLVM VM's {{ olvm_name }} by Cluster {{ olvm_cluster }}
+        ovirt_vm_info:
+          pattern: name="{{ olvm_name }}" and cluster="{{ olvm_cluster }}"
+        register: result
 
-    - name: Print out {{ olvm_name }} VM information
-      debug:
-        msg: "{{ result.ovirt_vms }}"
+      - name: Print out {{ olvm_name }} VM information
+        debug:
+          msg: "{{ result.ovirt_vms }}"
