@@ -58,9 +58,9 @@
     - name: install pexpect
       pip:
         name: pexpect
-      environment: "{{ pip_proxy_env }}"
 
-  environment: "{{ proxy_env }}"
+
+
 
 # Install and configure OLAM database
 
