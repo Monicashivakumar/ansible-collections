@@ -5,3 +5,4 @@ collections:
   - name: awx.awx
   - name: community.general
   - name: community.postgresql
+  - name: containers.podman
