@@ -4,13 +4,10 @@
   connection: local
   gather_facts: false
 
-  vars_files:
-    # Contains encrypted `engine_password` varibale using ansible-vault
-    - passwords.yml
-
   vars:
-    engine_fqdn: ovirt-engine.example.com
-    engine_user: admin@internal
+    engine_fqdn: "{{ lookup('env', 'OVIRT_URL') }}"
+    engine_user: "{{ lookup('env', 'OVIRT_USERNAME') }}"
+    engine_password: "{{ lookup('env', 'OVIRT_PASSWORD') }}"`
     engine_cafile: /etc/pki/ovirt-engine/ca.pem
 
     # Must be set to true to create inventory
