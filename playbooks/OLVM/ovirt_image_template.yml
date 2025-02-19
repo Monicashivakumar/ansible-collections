@@ -14,7 +14,7 @@
     engine_cafile: /etc/pki/ovirt-engine/ca.pem
     qcow_url: https://yum.oracle.com/templates/OracleLinux/OL8/u10/x86_64/OL8U10_x86_64-kvm-b237.qcow2 
     # qcow_url: file:///tmp/CentOS-7-x86_64-GenericCloud.qcow2
-    template_cluster: production
+    template_cluster: cluster1
     template_name: centos7_template
     template_memory: 2GiB
     template_cpu: 2
