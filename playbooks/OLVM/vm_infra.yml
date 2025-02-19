@@ -7,7 +7,7 @@
   vars:
     engine_fqdn: "{{ lookup('env', 'OVIRT_URL') }}"
     engine_user: "{{ lookup('env', 'OVIRT_USERNAME') }}"
-    engine_password: "{{ lookup('env', 'OVIRT_PASSWORD') }}"`
+    engine_password: "{{ lookup('env', 'OVIRT_PASSWORD') }}"
     engine_cafile: /etc/pki/ovirt-engine/ca.pem
 
     # Must be set to true to create inventory
