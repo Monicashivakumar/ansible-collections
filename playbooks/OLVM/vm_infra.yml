@@ -15,8 +15,8 @@
     httpd_vm:
       # Must be set to running to create inventory
       state: running
-      cluster: {{ cluster_name }}
-      template: {{ template_name }}
+      cluster: "{{ cluster_name }}"
+      template: "{{ template_name }}"
       memory: 1GiB
       memory_max: 2GiB
       cores: 1
@@ -25,8 +25,8 @@
     db_vm:
       # Must be set to running to create inventory
       state: running
-      cluster: {{ cluster_name }}
-      template: {{ template_name }}
+      cluster: "{{ cluster_name }}"
+      template: "{{ template_name }}"
       memory: 1GiB
       memory_max: 2GiB
       cores: 1
