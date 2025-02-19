@@ -1,8 +1,11 @@
+
 ---
 - name: oVirt infra
   hosts: localhost
   connection: local
   gather_facts: false
+
+
 
   vars:
     engine_fqdn: "{{ lookup('env', 'OVIRT_URL') }}"
@@ -10,60 +13,36 @@
     engine_password: "{{ lookup('env', 'OVIRT_PASSWORD') }}"
     engine_cafile: /etc/pki/ovirt-engine/ca.pem
 
-    # Must be set to true to create inventory
-    wait_for_ip: true
-    httpd_vm:
-      # Must be set to running to create inventory
-      state: running
-      cluster: "{{ cluster_name }}"
-      template: "{{ template_name }}"
-      memory: 1GiB
-      memory_max: 2GiB
-      cores: 1
-      root_password: '123456'
-
+    debug_vm_create: true
     db_vm:
-      # Must be set to running to create inventory
       state: running
-      cluster: "{{ cluster_name }}"
-      template: "{{ template_name }}"
+      cluster: cluster1
+      template: vm1
       memory: 1GiB
       memory_max: 2GiB
       cores: 1
-      tag: db
-      ssh_key: ssh-rsa AAAAB...Gx ondra@ondra
+      tag:
+        - db
+        - dbvm
+      disks:
+        - size: 1GiB
+          name: data
+          storage_domain: sd1
+          interface: virtio
 
     vms:
-      - name: httpd-vm-1
-        profile: httpd_vm
-        tag: httpd
-      - name: db-vm-1
-        profile: db_vm
-      - name: db-vm-2
-        profile: db_vm
+      - name: postgresql-vm-0
+        memory: 2GiB
+        cloud_init:
+          host_name: ps.example.com
+          root_password: 'mypassword'
+          authorized_ssh_keys: ssh-rsa A...LGx ondra@ondra
+        profile: "{{ db_vm }}"
+        tag:
+          - pgsql
+          - httpd
 
   roles:
     - vm_infra
   collections:
     - ovirt.ovirt
-
-
-# This role also creates inventory of created virtual machines it defines if wait_for_ip is set to true
-# and VM state is running. All defined virtual machine are part of ovirt_vm inventory group. Role also
-# create ovirt_tag_{tag_name} groups if there are any tags assigned to the virtual machine and place
-# all virtual machine with that tag to that inventory group.
-- name: Print info about httpd VM
-  hosts: ovirt_tag_httpd
-
-  tasks:
-    - name: Print info about httpd VM
-      debug:
-        msg: "{{ hostvars }}"
-
-- name: Print info about db VMs
-  hosts: ovirt_tag_db
-
-  tasks:
-    - name: Print info about db VM
-      debug:
-        msg: "{{ hostvars }}"
