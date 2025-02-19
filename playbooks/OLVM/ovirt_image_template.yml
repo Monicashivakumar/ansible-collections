@@ -1,0 +1,27 @@
+---
+- name: oVirt image template
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    # Contains encrypted `engine_password` varibale using ansible-vault
+    - passwords.yml
+
+  vars:
+    engine_fqdn: "{{ lookup('env', 'OVIRT_URL') }}"
+    engine_user: "{{ lookup('env', 'OVIRT_USERNAME') }}"
+    engine_cafile: /etc/pki/ovirt-engine/ca.pem
+    qcow_url: https://yum.oracle.com/templates/OracleLinux/OL8/u10/x86_64/OL8U10_x86_64-kvm-b237.qcow2 
+    # qcow_url: file:///tmp/CentOS-7-x86_64-GenericCloud.qcow2
+    template_cluster: production
+    template_name: centos7_template
+    template_memory: 2GiB
+    template_cpu: 2
+    template_disk_size: 10GiB
+    template_disk_storage: sd1
+
+  roles:
+    - image_template
+  collections:
+    - ovirt.ovirt
