@@ -16,8 +16,8 @@
     debug_vm_create: true
     db_vm:
       state: running
-      cluster: cluster1
-      template: vm1
+      cluster: "{{ cluster_name }}"
+      template: "{{ template_name }}"
       memory: 1GiB
       memory_max: 2GiB
       cores: 1
@@ -27,7 +27,7 @@
       disks:
         - size: 1GiB
           name: data
-          storage_domain: sd1
+          storage_domain: "{{ storage_domain}}"
           interface: virtio
 
     vms:
