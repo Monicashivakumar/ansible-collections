@@ -41,7 +41,7 @@
         tag:
           - pgsql
           - httpd
-        with_sequence: count = "{{ number }}"
+
 
   roles:
     - vm_infra
