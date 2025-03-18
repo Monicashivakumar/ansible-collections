@@ -35,4 +35,4 @@ If it is necessary to remove the AIDE configuration from multiple hosts, then th
 - Remove the AIDE package
 - Clean up the AIDE file system
 
-For more details on Advanced Intrusion Detection Environment with Oracle Linux Automation Manager, refer to the Technical Paper.
+For more details on Advanced Intrusion Detection Environment with Oracle Linux Automation Manager, refer to the [Technical Paper](https://www.oracle.com/a/ocom/docs/linux/using-advanced-intrusion-detection-environment.pdf).
