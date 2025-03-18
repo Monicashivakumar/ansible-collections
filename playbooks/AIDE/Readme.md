@@ -31,8 +31,8 @@ A new service requirement may need multiple hosts to have additional software in
 `remove_aide.yaml`:
 
 If it is necessary to remove the AIDE configuration from multiple hosts, then the remove aide playbook which runs on an Oracle Linux 8 host will perform the following:
-- Become the superuser
-- Remove the AIDE package
-- Clean up the AIDE file system
+- Become the superuser.
+- Remove the AIDE package.
+- Clean up the AIDE file system.
 
 For more details on Advanced Intrusion Detection Environment with Oracle Linux Automation Manager, refer to the [Technical Paper](https://www.oracle.com/a/ocom/docs/linux/using-advanced-intrusion-detection-environment.pdf).
